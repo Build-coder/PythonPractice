@@ -1,0 +1,6 @@
+The average body weight is:  4278.43875
+The median body weight is:  58.75
+The standard deviation body weights is:  16183.520282784548
+The average brain weight is:  574.5214285714286
+The median brain weight is:  155.75
+The standard deviation brain weights is:  1310.8744421615083
