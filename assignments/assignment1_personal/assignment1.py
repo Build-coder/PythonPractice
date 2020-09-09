@@ -10,7 +10,7 @@ Description: This program reads in a filename supplied at the command line
 
 import math
 
-def calc_mean(data):
+def calc_mean(data, weight):
 
     """
     A function to calculate the mean
@@ -24,15 +24,14 @@ def calc_mean(data):
     counter = 0
 
     for animals in data:
-        # print(animals['Attributes']['Bodyweight'])
-        total_sum = animals['Attributes']['Bodyweight'] + total_sum
+        total_sum = animals[weight] + total_sum
         counter = counter+1
 
     mean = total_sum/counter
 
     return mean
 
-def calc_median(data):
+def calc_median(data, weight):
 
     """
     A function to calculate the median 
@@ -44,23 +43,23 @@ def calc_median(data):
     counter = 0
 
     #if len of list is an even number
-    if len(data) % 2 == 0:
+    if len(sorted(data)) % 2 == 0:
 
         while counter<len(data)/2:
-            median = (data[counter] + data[counter+1])/2
+            median = (data[counter][weight] + data[counter+1][weight])/2
             counter = counter+1
 
     #if len of list is an odd number
     else:
 
         while counter<(len(data)/2):
-            median = data[counter]
+            median = data[counter][weight]
             counter = counter+1
 
     return median
 
 
-def calc_std_dev(data):
+def calc_std_dev(data, weight):
     
     """
     A function to calculate the standard deviation
@@ -129,10 +128,8 @@ def create_data():
             # info for each animal is stored in a dict
             animal = {
                 'Species': line_array[0],
-                'Attributes':{
-                    'Bodyweight': line_array[1],
-                    'Brainweight': line_array[2]
-                }
+                'Bodyweight': line_array[1],
+                'Brainweight': line_array[2]
             }
 
             animals.append(animal)
@@ -141,17 +138,41 @@ def create_data():
 
     return animals
 
+def sort_data(data):
+
+    """
+    A function to sort data values
+    Preconditions: data list must be created
+    Postconditions: returns a list of sorted values 
+    :param data: data
+    :return: a list of sorted floats
+    """
+
+    
+
+
+
+
 if __name__ == '__main__':
 
     data = create_data()
 
-    mean = calc_mean(data)
-    print("The mean is: " + str(mean))
+    mean_bodyweight = calc_mean(data, 'Bodyweight')
+    print("The mean is: " + str(mean_bodyweight))
 
-    # median = calc_median(data)
-    # print("The median is: " + str(median))
+    # median_bodyweight = calc_median(data, 'Bodyweight')
+    # print("The median is: " + str(median_bodyweight))
 
-    # std_dev = calc_std_dev(data)
-    # print("The standard deviation is: " + str(std_dev)) 
+    # std_dev_bodyweight = calc_std_dev(data, 'Bodyweight')
+    # print("The standard deviation is: " + str(std_dev_bodyweight)) 
+
+    mean_brainweight = calc_mean(data, 'Brainweight')
+    print("The mean is: " + str(mean_brainweight))
+
+    # median_brainweight = calc_median(data, 'Brainweight')
+    # print("The median is: " + str(median_brainweight))
+
+    # std_dev_brainweight = calc_std_dev(data, 'Brainweight')
+    # print("The standard deviation is: " + str(std_dev_brainweight)) 
 
     print()
