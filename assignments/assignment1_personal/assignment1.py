@@ -21,14 +21,27 @@ def calc_mean(data, weight):
     :return: the mean of the data
     """
 
-    total_sum = 0.0
-    counter = 0
+    if weight is not None:
 
-    for animals in data:
-        total_sum = animals[weight] + total_sum
-        counter = counter+1
+        total_sum = 0.0
+        counter = 0
 
-    mean = total_sum/counter
+        for animals in data:
+            total_sum = animals[weight] + total_sum
+            counter = counter+1
+
+        mean = total_sum/counter
+
+    else:
+
+        total_sum = 0.0
+        counter = 0
+
+        for element in data:
+            total_sum = element + total_sum
+            counter = counter+1
+
+        mean = total_sum/counter
 
     return mean
 
@@ -41,15 +54,18 @@ def calc_median(data, weight):
     :param data: the list of data
     :return: the median of the data
     """
+
     total_animals = 0
     i = 0
 
+    # create list of weights organized from lightest 
+    # to heaviest
     sorted_weight = sort_data(data, weight)
 
     for animals in data:
         total_animals = total_animals + 1
 
-    # half the number of animals in list
+        # half the number of animals in list
         half = total_animals/2
 
     # if len of list is an even number
@@ -76,33 +92,37 @@ def calc_std_dev(data, weight):
     :return: the standard deviation of the data 
     """
 
-    # to compute the std_dev, you calc the difference between each value
-    # and the mean(the variance), and square it. then you find the mean
-    # of all of the squared variances and take the sqr root of it
+    # to compute the variance, you calc the difference between each value
+    # and the mean and square the result of each difference. 
+    # 
+    # variance = (value-mean)^2
+    # 
+    # to compute the std_dev, you calc the mean of all of the variances 
+    # and take the sqr root
 
     variances = []
     mean = calc_mean(data, weight)
 
     for values in data:
         variances.append((values[weight]-mean)**2)
-        print(variances)
         
-    # mean_variances = calc_mean(variances, weight)
+    mean_variances = calc_mean(variances, None)
 
-    # std_dev = math.sqrt(mean_variances)
+    std_dev = math.sqrt(mean_variances)
 
-    # return std_dev
+    return std_dev
 
 
 def create_data():
 
     """
-    A function to create a sorted list of values from
-    an csv file
-    Preconditions: user must enter a csv file 
-    Postconditions: returns a list of sorted intergers 
+    A function to create a list of dicts each containing an 
+    animal and it's body/brain weight
+    Preconditions: user must enter a csv file as an arg on
+                   command line
+    Postconditions: returns a list of dicts 
     :param data: None
-    :return: a list of sorted ints
+    :return: a list of dicts
     """
 
     # reads the file provided as the second arg in cmd
@@ -142,6 +162,9 @@ def create_data():
 
         count = count + 1
 
+        # close the file
+        f.close()
+
     return animals
 
 def sort_data(data, weight):
@@ -165,7 +188,7 @@ def sort_data(data, weight):
             weights.append(animals['Brainweight'])
 
         else:
-            print('Could not sort weight')
+            print('\nCould not sort weight\n')
 
     return sorted(weights)
 
@@ -174,22 +197,24 @@ if __name__ == '__main__':
 
     data = create_data()
 
+    print()
+
     mean_bodyweight = calc_mean(data, 'Bodyweight')
-    print("The mean body weight is: " + str(mean_bodyweight))
+    print("The average body weight is: " + str(mean_bodyweight))
 
     median_bodyweight = calc_median(data, 'Bodyweight')
     print("The median body weight is: " + str(median_bodyweight))
 
-    # std_dev_bodyweight = calc_std_dev(data, 'Bodyweight')
-    # print("The standard deviation is: " + str(std_dev_bodyweight)) 
+    std_dev_bodyweight = calc_std_dev(data, 'Bodyweight')
+    print("The standard deviation is: " + str(std_dev_bodyweight)) 
 
     mean_brainweight = calc_mean(data, 'Brainweight')
-    print("The mean brain weight is: " + str(mean_brainweight))
+    print("The average brain weight is: " + str(mean_brainweight))
 
     median_brainweight = calc_median(data, 'Brainweight')
     print("The median brain weight is: " + str(median_brainweight))
 
-    # std_dev_brainweight = calc_std_dev(data, 'Brainweight')
-    # print("The standard deviation is: " + str(std_dev_brainweight)) 
+    std_dev_brainweight = calc_std_dev(data, 'Brainweight')
+    print("The standard deviation is: " + str(std_dev_brainweight)) 
 
     print()
