@@ -1,0 +1,4 @@
+because i'm calling a function "print" on album, 
+album must be an object of the class music, 
+and print must be an attribute of music i guess
+

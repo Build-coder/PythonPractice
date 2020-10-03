@@ -1,0 +1,91 @@
+./grittify.py album 4x4=12
+The songs on 4x4=12 are:
+Some Chords by deadmau5, on 4x4=12
+Sofi Needs a Ladder by deadmau5, on 4x4=12
+City in Florida by deadmau5, on 4x4=12
+Bad Selection by deadmau5, on 4x4=12
+Animal Rights by deadmau5, on 4x4=12
+I Said - Michael Woods Remix by deadmau5, on 4x4=12
+Right This Second by deadmau5, on 4x4=12
+Raise Your Weapon by deadmau5, on 4x4=12
+One Trick Pony by deadmau5, on 4x4=12
+Everything Before by deadmau5, on 4x4=12
+
+
+./grittify.py albums
+4x4=12 by deadmau5, released on December 06, 2010
+5 years of mau5 by deadmau5, released on November 24, 2014
+> album title goes here < by deadmau5, released on September 25, 2012
+At Play by deadmau5, released on October 18, 2011
+At Play Vol. 2 by deadmau5, released on December 01, 2009
+At Play Vol. 3 by deadmau5, released on July 13, 2010
+At Play Vol. 4 by deadmau5, released on November 26, 2012
+deadmau5 At Play, Vol. 5 by deadmau5, released on May 04, 2015
+For Lack Of A Better Album Title by deadmau5, released on January 01, 2010
+For Lack of a Better Name by deadmau5, released on September 22, 2009
+For Lack of a Better Name (The Extended Mixes) by deadmau5, released on January 01, 2009
+here's the drop! by deadmau5, released on October 04, 2019
+mau5ville: Level 1 by deadmau5, released on July 13, 2018
+mau5ville: Level 2 by deadmau5, released on November 16, 2018
+mau5ville: Level 3 by deadmau5, released on February 01, 2019
+Polar (Music from the Netflix Film) by deadmau5, released on January 25, 2019
+Random Album Title by deadmau5, released on September 02, 2009
+Random Album Title (Unmixed Extended Versions) by deadmau5, released on September 23, 2008
+Vexillology by deadmau5, released on November 06, 2006
+W:/2016ALBUM/ by deadmau5, released on December 02, 2016
+where's the drop? by deadmau5, released on March 30, 2018
+while(1<2) by deadmau5, released on June 24, 2014
+
+
+./grittify.py songs after 01/01/2019
+imaginary friends (ov) - Morgan Page Remix by deadmau5, on here's the drop!
+luxuria (ov) - Tinlicker Remix by deadmau5, on here's the drop!
+coelacanth (ov) - Gregory Reveret Remix by deadmau5, on here's the drop!
+acedia (ov) - Rinzen Remix by deadmau5, on here's the drop!
+avaritia (ov) - Seismal D Remix by deadmau5, on here's the drop!
+monophobia (ov) - Sian Remix by deadmau5, on here's the drop!
+gula (ov) - Pig&Dan Remix by deadmau5, on here's the drop!
+invidia (ov) - No Mana Remix by deadmau5, on here's the drop!
+unjaded (ov) - Mad Zach Remix by deadmau5, on here's the drop!
+ira (ov) - Gallya Remix by deadmau5, on here's the drop!
+fn pig (ov) - Spencer Brown Remix by deadmau5, on here's the drop!
+hr 8938 cephei (ov) - Mr. Bill Remix by deadmau5, on here's the drop!
+superbia (ov) - Matt Lange Remix by deadmau5, on here's the drop!
+caritas (ov) - Dom Kane Remix by deadmau5, on here's the drop!
+strobe (ov) - PEEKABOO Remix by deadmau5, on here's the drop!
+Polyphobia by deadmau5, on mau5ville: Level 3
+Glivch by deadmau5, on mau5ville: Level 3
+Are You Not Afraid by deadmau5, on mau5ville: Level 3
+Are You Not Afraid - J. Worra F No Remix by deadmau5, on mau5ville: Level 3
+Are You Not Afraid - C.O.Z Remix by deadmau5, on mau5ville: Level 3
+Hurricane by deadmau5, on mau5ville: Level 3
+Hurricane - Mark Mackenzie Remix by deadmau5, on mau5ville: Level 3
+Hurricane - OFFAIAH Remix by deadmau5, on mau5ville: Level 3
+Quests with Time Limits by deadmau5, on mau5ville: Level 3
+Over by deadmau5, on mau5ville: Level 3
+somb by deadmau5, on Polar (Music from the Netflix Film)
+cabin by deadmau5, on Polar (Music from the Netflix Film)
+chill by deadmau5, on Polar (Music from the Netflix Film)
+sniper by deadmau5, on Polar (Music from the Netflix Film)
+torture by deadmau5, on Polar (Music from the Netflix Film)
+midas heel by deadmau5, on Polar (Music from the Netflix Film)
+drugs by deadmau5, on Polar (Music from the Netflix Film)
+wilhelm by deadmau5, on Polar (Music from the Netflix Film)
+main by deadmau5, on Polar (Music from the Netflix Film)
+nosedive by deadmau5, on Polar (Music from the Netflix Film)
+camilla by deadmau5, on Polar (Music from the Netflix Film)
+end by deadmau5, on Polar (Music from the Netflix Film)
+drama free by deadmau5, on Polar (Music from the Netflix Film)
+
+./grittify.py songs before 01/01/2007
+1981 - Original Mix by deadmau5, on Vexillology
+Bounce - Original Mix by deadmau5, on Vexillology
+Dr. Funkenstein - Original Mix by deadmau5, on Vexillology
+Fustercluck - Original Mix by deadmau5, on Vexillology
+Lai - Original Mix by deadmau5, on Vexillology
+Orca - Original Mix by deadmau5, on Vexillology
+Plus - Original Mix by deadmau5, on Vexillology
+Apply Overnight - Original Mix by deadmau5, on Vexillology
+TL7 - Original Mix by deadmau5, on Vexillology
+Trepid - Original Mix by deadmau5, on Vexillology
+
