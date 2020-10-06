@@ -8,12 +8,37 @@ import calendar
 class Album: 
   
     # default constructor 
-    def __init__(self, album): 
-        self.album = album
+    def __init__(self, album_title, album_id, release_date, songs): 
+        self.album = album_title
+        self.id = album_id
+        self.date = release_date
+        self.songs = songs
   
     # a method for printing data members 
     def print(self): 
-        print(self.album) 
+
+        year = self.date[0]
+        month = convert_month(self.date[1])
+        day = self.date[2]
+
+        print(self.album + " by deadmau5, released on " + month
+        + " " + day + ", " + year)
+
+class Song:
+
+    # default constructor
+    def __init__(self, track_name, track_id, album_id):
+        self.song = track_name
+        self.id = track_id
+        self.album = album_id
+
+    # a method for printing data members
+    def print(self):
+        print(self.song)
+
+# # save data string in album object
+# album = Album(album[0] + " by deadmau5, released on "
+# + month + " " + day + ", " + year)
 
 
 def convert_month(month):
@@ -38,55 +63,6 @@ def convert_month(month):
     return year[month]
         
 
-def get_all_albums2():
-
-    # reads the file 
-    f = open('deadmau5_albums.csv', 'r')
-
-    #  list to store albums
-    albums = []
-
-    # counter
-    count = 0
-
-    # print(f.read())
-    for line in f.readlines():
-        
-        # skip the first line of file
-        if count > 0:
-
-            # delete \n characters
-            line = line.replace('\n', '')
-
-            # turn each line into an array
-            line_array = line.split(',')
-
-            # reformat date
-            date = line_array[2].split('-')
-
-            year = date[0]
-            month = date[1]
-            day = date[2]
-
-            # convert num of month to name of month
-            month = convert_month(month)
-
-            print(month)
-
-            # info for each animal is stored in a dict
-            obj = Album(line_array[0] + " by deadmau5, released on " + month
-            + ' ' + day + ' ' + year)
-
-            # add each dict to animals list
-            albums.append(obj)
-
-        count = count + 1
-
-        # close the file
-        f.close()
-
-    return albums
-
 
 def get_all_albums():
 
@@ -95,27 +71,47 @@ def get_all_albums():
     with open('deadmau5_albums.csv', newline='') as csvfile:
         reader = csv.reader(csvfile, delimiter=',', quotechar='"') 
 
-        i = 0
+        # counter
+        count = 0
 
         for album in reader:
 
-            date = album[2].split('-')
+            # skip first line with metadata info
+            if count > 0:
+                date = album[2]
+                date = date.split("-")
             
+                # save data string in album object
+                album = Album(album[0], album[1], date, "")
 
-            # # convert num of month to name of month
-            # month = convert_month(month)
+                albums.append(album)
 
-            # print(month)
+            #increment counter
+            count += 1  
+    
+    csvfile.close()
 
-            # info for each animal is stored in a dict
-            album = Album(album[0] + " by deadmau5, released on ")
+    # with open('deadmau5_tracks.csv', newline='') as csvfile:
+    #     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
+    #     for songs in reader:
 
-            albums.append(album)
+    #         # skip first line with metadata info
+    #         if count > 0:
+    #             song = songs[1]
 
-            
+    #             # save data string in album object
+    #             songs = Album(
+
+    #             albums.append(album)
+
+    #         #increment counter
+    #         count += 1  
+    
+    # csvfile.close()            
 
     return albums
+
 
 def get_songs_by_date(after=True):
 
@@ -135,6 +131,7 @@ def get_songs_by_date(after=True):
 
             if not after and song.before(date_object):
                 song.print()
+
 
 
 if __name__ == '__main__':
