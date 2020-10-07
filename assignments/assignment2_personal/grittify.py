@@ -3,13 +3,11 @@ import csv
 from datetime import datetime
 from sys import argv
 # from music import Album, Song
-import calendar
 
 class Album: 
-  
-    # default constructor 
+
     def __init__(self, album_title, album_id, release_date, songs): 
-        self.album = album_title
+        self.name = album_title
         self.id = album_id
         self.date = release_date
         self.songs = songs
@@ -21,24 +19,20 @@ class Album:
         month = convert_month(self.date[1])
         day = self.date[2]
 
-        print(self.album + " by deadmau5, released on " + month
+        print(self.name + " by deadmau5, released on " + month
         + " " + day + ", " + year)
 
 class Song:
 
-    # default constructor
     def __init__(self, track_name, track_id, album_id):
-        self.song = track_name
+        self.name = track_name
         self.id = track_id
         self.album = album_id
 
     # a method for printing data members
     def print(self):
-        print(self.song)
+        print(self.name)
 
-# # save data string in album object
-# album = Album(album[0] + " by deadmau5, released on "
-# + month + " " + day + ", " + year)
 
 
 def convert_month(month):
@@ -63,54 +57,99 @@ def convert_month(month):
     return year[month]
         
 
+def get_all_songs():
 
-def get_all_albums():
+    with open('deadmau5_tracks.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"')
 
-    albums = []
-
-    with open('deadmau5_albums.csv', newline='') as csvfile:
-        reader = csv.reader(csvfile, delimiter=',', quotechar='"') 
+        # list to hold song objects
+        tracks = []
 
         # counter
         count = 0
 
+        # bool to skip first line
+        first_line = True
+
+        for song in reader:
+
+            # skip first line with metadata info
+            if not first_line:
+
+                title = song[0]
+                id = song[1]
+                album_id = song[2]
+
+                # save data in song object
+                song = Song(title, id, album_id)
+                tracks.append(song)
+
+            # change value of bool
+            first_line = False 
+
+    csvfile.close() 
+
+    return tracks
+
+
+def get_all_albums():
+
+    with open('deadmau5_albums.csv', newline='') as csvfile:
+        reader = csv.reader(csvfile, delimiter=',', quotechar='"') 
+
+        # list that contains all album objects
+        catalog = []
+
+        # list contains all song objects
+        tracks = get_all_songs()
+
+        # list contains all song objects in album object
+        album_tracks = []
+
+        # bool to skip first line
+        first_line = True
+
         for album in reader:
 
             # skip first line with metadata info
-            if count > 0:
+            if not first_line:
+
+                # num of indices to delete
+                i = 0
+
+                # clear album_tracks
+                album_tracks = []
+
+                title = album[0]
+                id = album[1]
                 date = album[2]
+
                 date = date.split("-")
-            
-                # save data string in album object
-                album = Album(album[0], album[1], date, "")
 
-                albums.append(album)
+                # add tracks to album
+                for song in tracks:
+                    if song.album == id:
+                        album_tracks.append(song)
+                        i += 1
 
-            #increment counter
-            count += 1  
+                    else: 
+                        # erase tracks from list
+                        while 0 < i:
+                            tracks.pop(0)
+                            i -= 1
+
+                        break
+                        
+                # save data in album object
+                album = Album(title, id, date, album_tracks)
+
+                catalog.append(album)
+
+            first_line = False
     
-    csvfile.close()
+    csvfile.close() 
 
-    # with open('deadmau5_tracks.csv', newline='') as csvfile:
-    #     reader = csv.reader(csvfile, delimiter=',', quotechar='"')
-
-    #     for songs in reader:
-
-    #         # skip first line with metadata info
-    #         if count > 0:
-    #             song = songs[1]
-
-    #             # save data string in album object
-    #             songs = Album(
-
-    #             albums.append(album)
-
-    #         #increment counter
-    #         count += 1  
-    
-    # csvfile.close()            
-
-    return albums
+    return catalog
 
 
 def get_songs_by_date(after=True):
