@@ -15,24 +15,27 @@ class Album:
     # a method for printing data members 
     def print(self): 
 
-        year = self.date[0]
-        month = convert_month(self.date[1])
-        day = self.date[2]
+        date = self.date.split("-")
+
+        year = date[0]
+        month = convert_month(date[1])
+        day = date[2]
 
         print(self.name + " by deadmau5, released on " + month
         + " " + day + ", " + year)
 
 class Song:
 
-    def __init__(self, track_name, track_id, album_id):
+    def __init__(self, track_name, track_id, album_id, before, after):
         self.name = track_name
         self.id = track_id
         self.album = album_id
+        self.before = before
+        self.after = after
 
     # a method for printing data members
     def print(self):
         print(self.name)
-
 
 
 def convert_month(month):
@@ -81,7 +84,7 @@ def get_all_songs():
                 album_id = song[2]
 
                 # save data in song object
-                song = Song(title, id, album_id)
+                song = Song(title, id, album_id, "", "")
                 tracks.append(song)
 
             # change value of bool
@@ -124,8 +127,6 @@ def get_all_albums():
                 id = album[1]
                 date = album[2]
 
-                date = date.split("-")
-
                 # add tracks to album
                 for song in tracks:
                     if song.album == id:
@@ -146,6 +147,25 @@ def get_all_albums():
                 catalog.append(album)
 
             first_line = False
+
+        # for each song, update before and after with date
+        for albums in catalog:
+            for songs in album.songs:
+
+                date = albums.date.split('-')
+
+                year = date[0]
+                month = convert_month(date[1])
+                day = date[2]
+
+                reformat_date = date[1] + "/" + date[2] + "/" + date[0]
+
+
+                date_object = datetime.strptime(reformat_date, '%m/%d/%Y')
+
+                songs.before = date_object
+                songs.after = date_object
+    
     
     csvfile.close() 
 
