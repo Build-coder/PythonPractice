@@ -26,16 +26,34 @@ class Album:
 
 class Song:
 
-    def __init__(self, track_name, track_id, album_id, before, after):
+    def __init__(self, track_name, track_id, album_id, date):
         self.name = track_name
         self.id = track_id
         self.album = album_id
-        self.before = before
-        self.after = after
+        self.date = date
 
     # a method for printing data members
     def print(self):
         print(self.name)
+
+    
+    # method for before and after dates
+    def before(self, dates):
+        
+        for _date in dates:
+            print(_date)
+
+    def after(self, dates):
+        
+        for _date in dates:
+            print(_date)
+
+
+class Date:
+
+    def __init__(self, date):
+        self.date = date
+        
 
 
 def convert_month(month):
@@ -84,7 +102,7 @@ def get_all_songs():
                 album_id = song[2]
 
                 # save data in song object
-                song = Song(title, id, album_id, "", "")
+                song = Song(title, id, album_id, "")
                 tracks.append(song)
 
             # change value of bool
@@ -152,6 +170,8 @@ def get_all_albums():
         for albums in catalog:
             for songs in album.songs:
 
+                release_dates = []
+
                 date = albums.date.split('-')
 
                 year = date[0]
@@ -160,12 +180,7 @@ def get_all_albums():
 
                 reformat_date = date[1] + "/" + date[2] + "/" + date[0]
 
-
-                date_object = datetime.strptime(reformat_date, '%m/%d/%Y')
-
-                songs.before = date_object
-                songs.after = date_object
-    
+                release_dates.append(reformat_date)
     
     csvfile.close() 
 
